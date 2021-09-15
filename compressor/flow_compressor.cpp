@@ -87,8 +87,8 @@ void compress(ifstream *in, ofstream *out, int buffer_length, int cross_length){
         }else if(t==' '){
             t=replace_space;
         }
-        *out<<olc_offset<<" "<<olc_length<<" "<<t<<endl;
-
+        *out<<(char)(olc_offset+64)<<(char)(olc_length+64)<<t<<endl;
+        cout<<olc_offset<<" "<<olc_length<<" "<<t<<endl;
         while(buffer.getTail(buffer_length)!=buffer.cursor){
             buffer.add(in->eof() ? '\0' : in->get());
         }
@@ -148,35 +148,45 @@ OLC check_length(char_buffer buffer,ifstream *in){
 void decompress(ifstream *in,ofstream *out,int buffer_length) {
 
     char_buffer buffer = char_buffer(buffer_length+1);
+    //在这里创建实例，并且打印了第一次数据
+
     buffer.tail = buffer.getCursor(1);
-    int offset, length;
-    char next;
-    while (*in >> offset >> length >> next) {
+
+    char olc[3];
+    while (*in>>olc) {
+        int offset = olc[0]-64;
+        int length = olc[1]-64;
+        char ch = olc[2];
+        buffer.print();
+        //在这里打印了第二次数据
+
         if (length == 0) {
-            if(next==replace_endl){
+            if(ch==replace_endl){
                 *out<<buffer.push('\n');
-            }else if(next==replace_space) {
+            }else if(ch==replace_space) {
                 *out << buffer.push(' ');
             }else{
-                *out<<buffer.push(next);
+                *out<<buffer.push(ch);
             }
             continue;
         }
         //无匹配字符直接打印
 
-        char* beg = buffer.getTail(offset+1);
+        char* beg = buffer.getTail(offset);
+        buffer.print();
+
         for (int a = 0; a < length; a++) {
             *out<<buffer.push(*beg);
-            beg = buffer.next(beg);
+            buffer.next(beg);
         }
 
-        if (next != '\0') {
-            if(next==replace_endl){
+        if (ch != '\0') {
+            if(ch==replace_endl){
                 *out<<buffer.push('\n');
-            }else if(next==replace_space) {
+            }else if(ch==replace_space) {
                 *out << buffer.push(' ');
             }else{
-                *out<<buffer.push(next);
+                *out<<buffer.push(ch);
             }
         } else {
             break;

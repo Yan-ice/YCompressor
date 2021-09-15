@@ -8,9 +8,9 @@
 
 class char_buffer{
 private:
-    char* begin;
+    char *begin;
     //数组的左端
-    char* end;
+    char *end;
     //数组的右端
 public:
     char* cursor;
@@ -63,8 +63,12 @@ public:
      */
     void moveCursor(int num);
 
-    char* next(char *p);
-    char* last(char *p);
+    char* next(char *&p);
+    char* last(char *&p);
+
+
+    void print();
+
 };
 
 

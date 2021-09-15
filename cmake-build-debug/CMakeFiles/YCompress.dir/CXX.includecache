@@ -6,13 +6,19 @@
 
 #IncludeRegexTransform: 
 
+/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h
+
+/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor.cpp
+iostream
+-
+../header/compressor.h
+/Users/yanjiaqin/CLionProjects/YCompress/header/compressor.h
+../char_buffer.h
+/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h
+
 /Users/yanjiaqin/CLionProjects/YCompress/header/compressor.h
 iostream
 -
 fstream
 -
-
-/Users/yanjiaqin/CLionProjects/YCompress/main.cpp
-header/compressor.h
-/Users/yanjiaqin/CLionProjects/YCompress/header/compressor.h
 

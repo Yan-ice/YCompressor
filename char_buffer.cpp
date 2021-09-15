@@ -10,12 +10,13 @@
      */
     char_buffer::char_buffer(int size){
         begin = new char[size];
-        cursor = &begin[0];
-        tail = cursor;
-        end = cursor+size;
+        cursor = begin;
+        tail = begin;
+        end = begin+size;
         for(char *p = begin;p!=end;p++){
-            *p = '\0';
+            *p = '1';
         }
+        print();
     }
 
     char_buffer::~char_buffer(){
@@ -29,9 +30,9 @@
      */
     char char_buffer::push(char ch){
         *cursor = ch;
-        cursor = next(cursor);
+        next(cursor);
         if(cursor==tail){
-            tail = next(tail);
+            next(tail);
         }
         return ch;
     }
@@ -42,7 +43,7 @@
  */
 bool char_buffer::add(char ch){
     *tail = ch;
-    tail = next(tail);
+    next(tail);
     if(cursor==tail){
         return false;
     }
@@ -62,12 +63,12 @@ bool char_buffer::add(char ch){
         }
         if(offset > 0){
             while(offset > 0){
-                target = next(target);
+                next(target);
                 offset--;
             }
         }else{
             while(offset < 0){
-                target = last(target);
+                last(target);
                 offset++;
             }
         }
@@ -87,12 +88,12 @@ char* char_buffer::getCursor(int offset){
     }
     if(offset > 0){
         while(offset > 0){
-            target = next(target);
+            next(target);
             offset--;
         }
     }else{
         while(offset < 0){
-            target = last(target);
+            last(target);
 
             offset++;
         }
@@ -105,7 +106,7 @@ char* char_buffer::getCursor(int offset){
  * @param p
  * @return
  */
-char* char_buffer::next(char* p){
+char* char_buffer::next(char *&p){
     p++;
     if(p>=end){
         p = begin;
@@ -119,7 +120,7 @@ char* char_buffer::next(char* p){
  * @param p
  * @return
  */
-char* char_buffer::last(char* p){
+char* char_buffer::last(char *&p){
     p--;
     if(p<begin){
         p = end-1;
@@ -130,13 +131,24 @@ char* char_buffer::last(char* p){
 void char_buffer::moveCursor(int offset){
     if(offset > 0){
         while(offset > 0){
-            cursor = next(cursor);
+            next(cursor);
             offset--;
         }
     }else{
         while(offset < 0){
-            cursor = last(cursor);
+            last(cursor);
             offset++;
         }
     }
+}
+
+void char_buffer::print(){
+    printf("数组首部地址%p 数组尾部地址%p\n",begin,end);
+    std::cout<<"数组内容: ";
+    for(char* p = begin;p!=end;p++){
+        std::cout<<*p;
+    }
+    std::cout<<std::endl;
+
+    //std::cout<<begin<<std::endl;
 }
