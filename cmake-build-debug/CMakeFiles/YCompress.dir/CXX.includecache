@@ -6,23 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.cpp
-iostream
--
-char_buffer.h
 /Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h
-
-/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h
-
-/Users/yanjiaqin/CLionProjects/YCompress/main.cpp
-iostream
--
-fstream
--
-char_buffer.h
-/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h
-yjq_compressor.h
-/Users/yanjiaqin/CLionProjects/YCompress/yjq_compressor.h
 
 /Users/yanjiaqin/CLionProjects/YCompress/yjq_compressor.cpp
 iostream

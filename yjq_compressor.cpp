@@ -97,9 +97,9 @@ OLC check_length(char *L_begin, char *R_begin){
 void decompress(char sourceFileName[],char targetFileName[],int buffer_length) {
     in.open(sourceFileName,ios::out | ios::in);
     out.open(targetFileName,ios::out | ios::in);
-    char_buffer buffer = char_buffer(buffer_length);
+    char_buffer buffer = char_buffer(buffer_length+1);
 
-    int offset, length, cur_size = 0;
+    int offset, length;
     char next;
     while (in >> offset >> length >> next) {
         if (length == 0) {
@@ -110,21 +110,13 @@ void decompress(char sourceFileName[],char targetFileName[],int buffer_length) {
             }else{
                 out<<buffer.push(next);
             }
-            if (cur_size < buffer_length) {
-                cur_size++;
-            }
             continue;
         }
         //无匹配字符直接打印
-
+        char* beg = buffer.getTail(offset);
         for (int a = 0; a < length; a++) {
-            out<<buffer.push(buffer.getTail(offset));
-        }
-        if(cur_size<buffer_length){
-            cur_size = cur_size+length;
-            if (cur_size > buffer_length) {
-                cur_size = buffer_length;
-            }
+            out<<buffer.push(*beg);
+            beg = buffer.next(beg);
         }
 
         if (next != '\0') {
@@ -134,10 +126,6 @@ void decompress(char sourceFileName[],char targetFileName[],int buffer_length) {
                 out << buffer.push(' ');
             }else{
                 out<<buffer.push(next);
-            }
-
-            if (cur_size < buffer_length) {
-                cur_size++;
             }
         } else {
             break;

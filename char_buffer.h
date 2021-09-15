@@ -20,7 +20,7 @@ public:
      * 建立一个环形数组作为缓冲区。
      * @param size 环的大小
      */
-    char_buffer(int size);
+    explicit char_buffer(int size);
 
     ~char_buffer();
 
@@ -38,7 +38,7 @@ public:
      * @param num 与光标的相对位置
      * @return 指定位置的字符指针
      */
-    char getCursor(int num);
+    char* getCursor(int num);
     /**
      * 以尾光标位置为基准，获得指定下标的元素。
      * 如果下标为正，则为光标后移，负则前移。
@@ -46,7 +46,10 @@ public:
      * @param num 与光标的相对位置
      * @return 指定位置的字符指针
      */
-    char getTail(int num);
+    char* getTail(int num);
+
+    char* next(char* p);
+    char* last(char* p);
 };
 
 

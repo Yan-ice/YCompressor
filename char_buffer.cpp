@@ -11,6 +11,7 @@
     char_buffer::char_buffer(int size){
         begin = new char[size];
         cursor = begin;
+        tail = begin;
         end = begin+size;
 
     }
@@ -26,12 +27,9 @@
     char char_buffer::push(char ch){
         *cursor = ch;
 
-        cursor++;
-        if(cursor==end){
-            cursor = begin;
-        }
+        cursor = next(cursor);
         if(cursor==tail){
-            tail++;
+            tail = next(tail);
         }
         return ch;
     }
@@ -43,29 +41,23 @@
      * @param offset 与光标的相对位置
      * @return 指定位置的字符指针
      */
-    char char_buffer::getTail(int offset){
+    char* char_buffer::getTail(int offset){
         char* target = tail;
         if(offset == 0){
-            return *tail;
+            return tail;
         }
         if(offset > 0){
             while(offset > 0){
-                target++;
-                if(target==end){
-                    target = begin;
-                }
+                target = next(target);
                 offset--;
             }
         }else{
             while(offset < 0){
-                target--;
-                if(target==begin-1){
-                    target = end-1;
-                }
+                target = last(target);
                 offset++;
             }
         }
-        return *target;
+        return target;
     }
 /**
  * 以头光标位置为基准，获得指定下标的元素。
@@ -74,27 +66,56 @@
  * @param offset 与光标的相对位置
  * @return 指定位置的字符指针
  */
-char char_buffer::getCursor(int offset){
+char* char_buffer::getCursor(int offset){
     char* target = cursor;
     if(offset == 0){
-        return *cursor;
+        return cursor;
     }
     if(offset > 0){
         while(offset > 0){
-            target++;
-            if(target==end){
-                target = begin;
-            }
+            target = next(target);
             offset--;
         }
     }else{
         while(offset < 0){
-            target--;
-            if(target==begin-1){
-                target = end-1;
-            }
+            target = last(target);
+
             offset++;
         }
     }
-    return *target;
+    return target;
+}
+
+/**
+ * 获得p在环数组中的下一个指针。
+ * @param p
+ * @return
+ */
+char* char_buffer::next(char* p){
+    p++;
+    if(p>=end){
+        p = begin;
+        return p;
+    }
+//    if(p<begin){
+//        p = begin;
+//    }
+    return p;
+}
+
+/**
+ * 获得p在环数组中的上一个指针。
+ * @param p
+ * @return
+ */
+char* char_buffer::last(char* p){
+    p--;
+    if(p<begin){
+        p = end-1;
+    }
+//    if(p>=end){
+//        p = end-1;
+//        return p;
+//    }
+    return p;
 }

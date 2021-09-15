@@ -4,7 +4,6 @@
 CMakeFiles/YCompress.dir/char_buffer.cpp.o: ../char_buffer.cpp
 CMakeFiles/YCompress.dir/char_buffer.cpp.o: ../char_buffer.h
 
-CMakeFiles/YCompress.dir/main.cpp.o: ../char_buffer.h
 CMakeFiles/YCompress.dir/main.cpp.o: ../main.cpp
 CMakeFiles/YCompress.dir/main.cpp.o: ../yjq_compressor.h
 
