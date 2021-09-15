@@ -4,10 +4,14 @@
 CMakeFiles/YCompress.dir/char_buffer.cpp.o: ../char_buffer.cpp
 CMakeFiles/YCompress.dir/char_buffer.cpp.o: ../char_buffer.h
 
-CMakeFiles/YCompress.dir/main.cpp.o: ../main.cpp
-CMakeFiles/YCompress.dir/main.cpp.o: ../yjq_compressor.h
+CMakeFiles/YCompress.dir/compressor/compressor.cpp.o: ../char_buffer.h
+CMakeFiles/YCompress.dir/compressor/compressor.cpp.o: ../compressor/compressor.cpp
+CMakeFiles/YCompress.dir/compressor/compressor.cpp.o: ../header/compressor.h
 
-CMakeFiles/YCompress.dir/yjq_compressor.cpp.o: ../char_buffer.h
-CMakeFiles/YCompress.dir/yjq_compressor.cpp.o: ../yjq_compressor.cpp
-CMakeFiles/YCompress.dir/yjq_compressor.cpp.o: ../yjq_compressor.h
+CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o: ../char_buffer.h
+CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o: ../compressor/flow_compressor.cpp
+CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o: ../header/compressor.h
+
+CMakeFiles/YCompress.dir/main.cpp.o: ../header/compressor.h
+CMakeFiles/YCompress.dir/main.cpp.o: ../main.cpp
 

@@ -10,10 +10,12 @@
      */
     char_buffer::char_buffer(int size){
         begin = new char[size];
-        cursor = begin;
-        tail = begin;
-        end = begin+size;
-
+        cursor = &begin[0];
+        tail = cursor;
+        end = cursor+size;
+        for(char *p = begin;p!=end;p++){
+            *p = '\0';
+        }
     }
 
     char_buffer::~char_buffer(){
@@ -22,11 +24,11 @@
     /**
      * 将新的元素插入头光标，然后将头光标向后移一位。
      * 如果头光标后移碰到了尾光标，则尾光标也将后移一位。
+     * 该方法还会返回插入元素的地址。
      * @param ch 将插入的元素
      */
     char char_buffer::push(char ch){
         *cursor = ch;
-
         cursor = next(cursor);
         if(cursor==tail){
             tail = next(tail);
@@ -34,6 +36,18 @@
         return ch;
     }
 
+/**
+ * 将新的元素追加到尾光标，然后将尾光标向后移一位。
+ * 如果尾光标碰到头光标，则返回false，否则返回true。
+ */
+bool char_buffer::add(char ch){
+    *tail = ch;
+    tail = next(tail);
+    if(cursor==tail){
+        return false;
+    }
+    return true;
+}
     /**
      * 以尾光标位置为基准，获得指定下标的元素。
      * 如果下标为正，则为光标后移，负则前移。
@@ -97,9 +111,6 @@ char* char_buffer::next(char* p){
         p = begin;
         return p;
     }
-//    if(p<begin){
-//        p = begin;
-//    }
     return p;
 }
 
@@ -113,9 +124,19 @@ char* char_buffer::last(char* p){
     if(p<begin){
         p = end-1;
     }
-//    if(p>=end){
-//        p = end-1;
-//        return p;
-//    }
     return p;
+}
+
+void char_buffer::moveCursor(int offset){
+    if(offset > 0){
+        while(offset > 0){
+            cursor = next(cursor);
+            offset--;
+        }
+    }else{
+        while(offset < 0){
+            cursor = last(cursor);
+            offset++;
+        }
+    }
 }

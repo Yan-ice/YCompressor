@@ -88,13 +88,16 @@
 		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h">
 			<Option target="YCompress"/>
 		</Unit>
+		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/compressor/compressor.cpp">
+			<Option target="YCompress"/>
+		</Unit>
+		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor.cpp">
+			<Option target="YCompress"/>
+		</Unit>
+		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/header/compressor.h">
+			<Option target="YCompress"/>
+		</Unit>
 		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/main.cpp">
-			<Option target="YCompress"/>
-		</Unit>
-		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/yjq_compressor.cpp">
-			<Option target="YCompress"/>
-		</Unit>
-		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/yjq_compressor.h">
 			<Option target="YCompress"/>
 		</Unit>
 		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/CMakeLists.txt">

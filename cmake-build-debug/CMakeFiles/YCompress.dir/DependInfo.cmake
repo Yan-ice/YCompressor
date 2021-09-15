@@ -5,8 +5,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/char_buffer.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/compressor/compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/compressor/compressor.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o"
   "/Users/yanjiaqin/CLionProjects/YCompress/main.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/main.cpp.o"
-  "/Users/yanjiaqin/CLionProjects/YCompress/yjq_compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/yjq_compressor.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

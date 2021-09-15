@@ -2,40 +2,39 @@
 // Created by 颜嘉钦 on 9/14/21.
 //
 #include <iostream>
-#include <fstream>
-#include "yjq_compressor.h"
-#include "char_buffer.h"
+#include "../header/compressor.h"
+#include "../char_buffer.h"
+
+//#define compressor1
+#ifdef compressor1
 
 using namespace std;
-
-ifstream in = ifstream();
-//从文件读取信息
-
-ofstream out = ofstream();
-//向文件写入信息
 
 char replace_space = '^';
 char replace_endl = '%';
 
+OLC check_length(char *L_begin, char *R_begin);
+
+
 /**
  * 将源文件指定长度字符压缩，并输出到文件。
+ * 该方法一次性读取所有字符再开始压缩。
  * @param begin 字符串首
  * @param end 字符串尾
  * @param buffer_length 缓冲区长度
  */
-void compress(char sourceFileName[],char targetFileName[],int buffer_length, int package_length){
-    in.open(sourceFileName,ios::out | ios::in);
-    out.open(targetFileName,ios::out | ios::in);
+void compress(ifstream *in, ofstream *out, int buffer_length, int package_length){
 
-    in.seekg(0,in.end);
-    package_length = in.tellg();
-    in.seekg(0,in.beg);
+
+    in->seekg(0,in->end);
+    package_length = in->tellg();
+    in->seekg(0,in->beg);
     cout<<"待压缩文件总长度： "<<package_length<<endl;
 
     char begin[package_length];
     char *end = begin;
     for(int a = 0;a<package_length;a++){
-        *end = in.get();
+        *end = in->get();
         end++;
     }
     char *cursor = begin;
@@ -48,7 +47,7 @@ void compress(char sourceFileName[],char targetFileName[],int buffer_length, int
         }
         cursor = olc.next+1;
         if(olc.next>=end){
-            out<<olc.offset<<" "<<olc.length<<" "<<'\0'<<endl;
+            *out<<olc.offset<<" "<<olc.length<<" "<<'\0'<<endl;
         }else{
             char t = *(olc.next);
             if(t=='\n'){
@@ -56,12 +55,13 @@ void compress(char sourceFileName[],char targetFileName[],int buffer_length, int
             }else if(t==' '){
                 t=replace_space;
             }
-            out<<olc.offset<<" "<<olc.length<<" "<<t<<endl;
+            *out<<olc.offset<<" "<<olc.length<<" "<<t<<endl;
         }
     }
-    in.close();
-    out.close();
+    in->close();
+    out->close();
 }
+
 
 /**
  * 寻找最大匹配字符串，并返回olc。
@@ -94,44 +94,45 @@ OLC check_length(char *L_begin, char *R_begin){
  * 输入字符，解压到另一个文件。
  * @param buffer_length
  */
-void decompress(char sourceFileName[],char targetFileName[],int buffer_length) {
-    in.open(sourceFileName,ios::out | ios::in);
-    out.open(targetFileName,ios::out | ios::in);
+void decompress(ifstream *in,ofstream *out,int buffer_length) {
+
     char_buffer buffer = char_buffer(buffer_length+1);
 
     int offset, length;
     char next;
-    while (in >> offset >> length >> next) {
+    while (*in >> offset >> length >> next) {
         if (length == 0) {
             if(next==replace_endl){
-                out<<buffer.push('\n');
+                *out<<buffer.push('\n');
             }else if(next==replace_space) {
-                out << buffer.push(' ');
+                *out << buffer.push(' ');
             }else{
-                out<<buffer.push(next);
+                *out<<buffer.push(next);
             }
             continue;
         }
         //无匹配字符直接打印
         char* beg = buffer.getTail(offset);
         for (int a = 0; a < length; a++) {
-            out<<buffer.push(*beg);
+            *out<<buffer.push(*beg);
             beg = buffer.next(beg);
         }
 
         if (next != '\0') {
             if(next==replace_endl){
-                out<<buffer.push('\n');
+                *out<<buffer.push('\n');
             }else if(next==replace_space) {
-                out << buffer.push(' ');
+                *out << buffer.push(' ');
             }else{
-                out<<buffer.push(next);
+                *out<<buffer.push(next);
             }
         } else {
             break;
         }
         //打印匹配字符串与下一个字符
     }
-    in.close();
-    out.close();
+    in->close();
+    out->close();
 }
+
+#endif
