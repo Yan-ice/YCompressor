@@ -3,4 +3,4 @@ project(YCompress)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(YCompress main.cpp char_buffer.cpp char_buffer.h compressor/compressor.cpp compressor/flow_compressor.cpp header/compressor.h)
+add_executable(YCompress main.cpp compressor/char_buffer.cpp header/char_buffer.h compressor/compressor.cpp compressor/flow_compressor.cpp header/compressor.h)

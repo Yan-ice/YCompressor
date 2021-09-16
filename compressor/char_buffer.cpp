@@ -2,30 +2,31 @@
 // Created by 颜嘉钦 on 9/14/21.
 //
 #include <iostream>
-#include "char_buffer.h"
+#include "../header/char_buffer.h"
 
     /**
-     * 建立一个环形数组作为缓冲区。
+     * 建立一个环形数组。
      * @param size 环的大小
      */
     char_buffer::char_buffer(int size){
         begin = new char[size];
-        cursor = begin;
-        tail = begin;
         end = begin+size;
         for(char *p = begin;p!=end;p++){
             *p = '1';
         }
-        print();
+
+        cursor = begin;
+        tail = begin;
     }
 
     char_buffer::~char_buffer(){
         delete [] begin;
     }
+
     /**
      * 将新的元素插入头光标，然后将头光标向后移一位。
      * 如果头光标后移碰到了尾光标，则尾光标也将后移一位。
-     * 该方法还会返回插入元素的地址。
+     * (单纯为了图个方便，)该方法还会返回插入元素的地址。
      * @param ch 将插入的元素
      */
     char char_buffer::push(char ch){
@@ -75,11 +76,9 @@ bool char_buffer::add(char ch){
         return target;
     }
 /**
- * 以头光标位置为基准，获得指定下标的元素。
- * 如果下标为正，则为光标后移，负则前移。
+ * 以头光标位置为基准，获得指定下标的元素。如果下标为正，则为光标后移，负则前移。
  * 如果下标为0，则返回光标本身。
  * @param offset 与光标的相对位置
- * @return 指定位置的字符指针
  */
 char* char_buffer::getCursor(int offset){
     char* target = cursor;
@@ -94,7 +93,6 @@ char* char_buffer::getCursor(int offset){
     }else{
         while(offset < 0){
             last(target);
-
             offset++;
         }
     }

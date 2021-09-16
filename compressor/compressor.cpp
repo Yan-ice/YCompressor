@@ -3,7 +3,7 @@
 //
 #include <iostream>
 #include "../header/compressor.h"
-#include "../char_buffer.h"
+#include "../header/char_buffer.h"
 
 //#define compressor1
 #ifdef compressor1
@@ -23,18 +23,18 @@ OLC check_length(char *L_begin, char *R_begin);
  * @param end 字符串尾
  * @param buffer_length 缓冲区长度
  */
-void compress(ifstream *in, ofstream *out, int buffer_length, int package_length){
+void compress(ifstream &in, ofstream &out, int buffer_length, int package_length){
 
 
-    in->seekg(0,in->end);
-    package_length = in->tellg();
-    in->seekg(0,in->beg);
+    in.seekg(0,in.end);
+    package_length = in.tellg();
+    in.seekg(0,in.beg);
     cout<<"待压缩文件总长度： "<<package_length<<endl;
 
     char begin[package_length];
     char *end = begin;
     for(int a = 0;a<package_length;a++){
-        *end = in->get();
+        *end = in.get();
         end++;
     }
     char *cursor = begin;
@@ -47,7 +47,7 @@ void compress(ifstream *in, ofstream *out, int buffer_length, int package_length
         }
         cursor = olc.next+1;
         if(olc.next>=end){
-            *out<<olc.offset<<" "<<olc.length<<" "<<'\0'<<endl;
+            out<<olc.offset<<" "<<olc.length<<" "<<'\0'<<endl;
         }else{
             char t = *(olc.next);
             if(t=='\n'){
@@ -55,11 +55,11 @@ void compress(ifstream *in, ofstream *out, int buffer_length, int package_length
             }else if(t==' '){
                 t=replace_space;
             }
-            *out<<olc.offset<<" "<<olc.length<<" "<<t<<endl;
+            out<<olc.offset<<" "<<olc.length<<" "<<t<<endl;
         }
     }
-    in->close();
-    out->close();
+    in.close();
+    out.close();
 }
 
 
@@ -94,45 +94,45 @@ OLC check_length(char *L_begin, char *R_begin){
  * 输入字符，解压到另一个文件。
  * @param buffer_length
  */
-void decompress(ifstream *in,ofstream *out,int buffer_length) {
+void decompress(ifstream in,ofstream out,int buffer_length) {
 
     char_buffer buffer = char_buffer(buffer_length+1);
 
     int offset, length;
     char next;
-    while (*in >> offset >> length >> next) {
+    while (in >> offset >> length >> next) {
         if (length == 0) {
             if(next==replace_endl){
-                *out<<buffer.push('\n');
+                out<<buffer.push('\n');
             }else if(next==replace_space) {
-                *out << buffer.push(' ');
+                out << buffer.push(' ');
             }else{
-                *out<<buffer.push(next);
+                out<<buffer.push(next);
             }
             continue;
         }
         //无匹配字符直接打印
         char* beg = buffer.getTail(offset);
         for (int a = 0; a < length; a++) {
-            *out<<buffer.push(*beg);
+            out<<buffer.push(*beg);
             beg = buffer.next(beg);
         }
 
         if (next != '\0') {
             if(next==replace_endl){
-                *out<<buffer.push('\n');
+                out<<buffer.push('\n');
             }else if(next==replace_space) {
-                *out << buffer.push(' ');
+                out << buffer.push(' ');
             }else{
-                *out<<buffer.push(next);
+                out<<buffer.push(next);
             }
         } else {
             break;
         }
         //打印匹配字符串与下一个字符
     }
-    in->close();
-    out->close();
+    in.close();
+    out.close();
 }
 
 #endif

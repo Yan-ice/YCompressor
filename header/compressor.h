@@ -13,6 +13,6 @@ struct OLC{
 };
 
 
-void compress(ifstream *in, ofstream *out, int buffer_length, int package_length);
+void compress(ifstream &in, ofstream &out, int buffer_length, int advance_length);
 
-void decompress(ifstream *in,ofstream *out,int buffer_length);
+void decompress(ifstream &in,ofstream &out,int buffer_length);
