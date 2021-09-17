@@ -89,18 +89,18 @@ CMakeFiles/YCompress.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/YCompress.dir/main.cpp.s"
 	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yanjiaqin/CLionProjects/YCompress/main.cpp -o CMakeFiles/YCompress.dir/main.cpp.s
 
-CMakeFiles/YCompress.dir/char_buffer.cpp.o: CMakeFiles/YCompress.dir/flags.make
-CMakeFiles/YCompress.dir/char_buffer.cpp.o: ../char_buffer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/YCompress.dir/char_buffer.cpp.o"
-	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/YCompress.dir/char_buffer.cpp.o -c /Users/yanjiaqin/CLionProjects/YCompress/char_buffer.cpp
+CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o: CMakeFiles/YCompress.dir/flags.make
+CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o: ../compressor/char_buffer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o"
+	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o -c /Users/yanjiaqin/CLionProjects/YCompress/compressor/char_buffer.cpp
 
-CMakeFiles/YCompress.dir/char_buffer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/YCompress.dir/char_buffer.cpp.i"
-	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yanjiaqin/CLionProjects/YCompress/char_buffer.cpp > CMakeFiles/YCompress.dir/char_buffer.cpp.i
+CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.i"
+	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yanjiaqin/CLionProjects/YCompress/compressor/char_buffer.cpp > CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.i
 
-CMakeFiles/YCompress.dir/char_buffer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/YCompress.dir/char_buffer.cpp.s"
-	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yanjiaqin/CLionProjects/YCompress/char_buffer.cpp -o CMakeFiles/YCompress.dir/char_buffer.cpp.s
+CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.s"
+	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yanjiaqin/CLionProjects/YCompress/compressor/char_buffer.cpp -o CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.s
 
 CMakeFiles/YCompress.dir/compressor/compressor.cpp.o: CMakeFiles/YCompress.dir/flags.make
 CMakeFiles/YCompress.dir/compressor/compressor.cpp.o: ../compressor/compressor.cpp
@@ -128,23 +128,38 @@ CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.s"
 	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor.cpp -o CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.s
 
+CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o: CMakeFiles/YCompress.dir/flags.make
+CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o: ../compressor/flow_compressor2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o"
+	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o -c /Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor2.cpp
+
+CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.i"
+	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor2.cpp > CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.i
+
+CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.s"
+	/usr/local/Cellar/gcc@10/10.3.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor2.cpp -o CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.s
+
 # Object files for target YCompress
 YCompress_OBJECTS = \
 "CMakeFiles/YCompress.dir/main.cpp.o" \
-"CMakeFiles/YCompress.dir/char_buffer.cpp.o" \
+"CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o" \
 "CMakeFiles/YCompress.dir/compressor/compressor.cpp.o" \
-"CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o"
+"CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o" \
+"CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o"
 
 # External object files for target YCompress
 YCompress_EXTERNAL_OBJECTS =
 
 YCompress: CMakeFiles/YCompress.dir/main.cpp.o
-YCompress: CMakeFiles/YCompress.dir/char_buffer.cpp.o
+YCompress: CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o
 YCompress: CMakeFiles/YCompress.dir/compressor/compressor.cpp.o
 YCompress: CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o
+YCompress: CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o
 YCompress: CMakeFiles/YCompress.dir/build.make
 YCompress: CMakeFiles/YCompress.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable YCompress"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable YCompress"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/YCompress.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

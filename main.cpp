@@ -6,6 +6,7 @@ using namespace std;
 
 
 int main() {
+    cout<<(int)'\0'<<endl;
     ifstream in1 = ifstream();
 //从文件读取信息
     ofstream out1 = ofstream();
@@ -17,11 +18,23 @@ int main() {
 
     in1.open("..//testfile//sourceFile.txt",ios::out | ios::in);
     out1.open("..//testfile//compressedFile.txt",ios::out | ios::in);
-    compress(in1,out1,75,30);
+    compress(in1,out1,75,75);
 
     in2.open("..//testfile//compressedFile.txt",ios::out | ios::in);
     out2.open("..//testfile//uncompressedFile.txt",ios::out | ios::in);
     decompress(in2,out2,75);
+//
+//    in1.open("..//testfile//compressedFile.txt",ios::out | ios::in);
+//    out1.open("..//testfile//compressedFile2.txt",ios::out | ios::in);
+//    compress(in1,out1,75,75);
+//
+//    in2.open("..//testfile//compressedFile2.txt",ios::out | ios::in);
+//    out2.open("..//testfile//uncompressedFile.txt",ios::out | ios::in);
+//    decompress(in2,out2,75);
+//    in2.open("..//testfile//uncompressedFile.txt",ios::out | ios::in);
+//    out2.open("..//testfile//uncompressedFile2.txt",ios::out | ios::in);
+//    decompress(in2,out2,75);
+
     return 0;
 }
 

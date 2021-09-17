@@ -142,32 +142,32 @@ YCompress/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/build
 .PHONY : YCompress/fast
 
-char_buffer.o: char_buffer.cpp.o
+compressor/char_buffer.o: compressor/char_buffer.cpp.o
 
-.PHONY : char_buffer.o
+.PHONY : compressor/char_buffer.o
 
 # target to build an object file
-char_buffer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/char_buffer.cpp.o
-.PHONY : char_buffer.cpp.o
+compressor/char_buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o
+.PHONY : compressor/char_buffer.cpp.o
 
-char_buffer.i: char_buffer.cpp.i
+compressor/char_buffer.i: compressor/char_buffer.cpp.i
 
-.PHONY : char_buffer.i
+.PHONY : compressor/char_buffer.i
 
 # target to preprocess a source file
-char_buffer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/char_buffer.cpp.i
-.PHONY : char_buffer.cpp.i
+compressor/char_buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.i
+.PHONY : compressor/char_buffer.cpp.i
 
-char_buffer.s: char_buffer.cpp.s
+compressor/char_buffer.s: compressor/char_buffer.cpp.s
 
-.PHONY : char_buffer.s
+.PHONY : compressor/char_buffer.s
 
 # target to generate assembly for a file
-char_buffer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/char_buffer.cpp.s
-.PHONY : char_buffer.cpp.s
+compressor/char_buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.s
+.PHONY : compressor/char_buffer.cpp.s
 
 compressor/compressor.o: compressor/compressor.cpp.o
 
@@ -223,6 +223,33 @@ compressor/flow_compressor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.s
 .PHONY : compressor/flow_compressor.cpp.s
 
+compressor/flow_compressor2.o: compressor/flow_compressor2.cpp.o
+
+.PHONY : compressor/flow_compressor2.o
+
+# target to build an object file
+compressor/flow_compressor2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o
+.PHONY : compressor/flow_compressor2.cpp.o
+
+compressor/flow_compressor2.i: compressor/flow_compressor2.cpp.i
+
+.PHONY : compressor/flow_compressor2.i
+
+# target to preprocess a source file
+compressor/flow_compressor2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.i
+.PHONY : compressor/flow_compressor2.cpp.i
+
+compressor/flow_compressor2.s: compressor/flow_compressor2.cpp.s
+
+.PHONY : compressor/flow_compressor2.s
+
+# target to generate assembly for a file
+compressor/flow_compressor2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/YCompress.dir/build.make CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.s
+.PHONY : compressor/flow_compressor2.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -259,15 +286,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... YCompress"
-	@echo "... char_buffer.o"
-	@echo "... char_buffer.i"
-	@echo "... char_buffer.s"
+	@echo "... compressor/char_buffer.o"
+	@echo "... compressor/char_buffer.i"
+	@echo "... compressor/char_buffer.s"
 	@echo "... compressor/compressor.o"
 	@echo "... compressor/compressor.i"
 	@echo "... compressor/compressor.s"
 	@echo "... compressor/flow_compressor.o"
 	@echo "... compressor/flow_compressor.i"
 	@echo "... compressor/flow_compressor.s"
+	@echo "... compressor/flow_compressor2.o"
+	@echo "... compressor/flow_compressor2.i"
+	@echo "... compressor/flow_compressor2.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

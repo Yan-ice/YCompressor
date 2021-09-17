@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/YCompress.dir/char_buffer.cpp.o"
+  "CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o"
   "CMakeFiles/YCompress.dir/compressor/compressor.cpp.o"
   "CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o"
+  "CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o"
   "CMakeFiles/YCompress.dir/main.cpp.o"
   "YCompress"
   "YCompress.pdb"

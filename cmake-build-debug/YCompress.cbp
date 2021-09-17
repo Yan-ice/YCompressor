@@ -82,16 +82,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.cpp">
-			<Option target="YCompress"/>
-		</Unit>
-		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/char_buffer.h">
+		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/compressor/char_buffer.cpp">
 			<Option target="YCompress"/>
 		</Unit>
 		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/compressor/compressor.cpp">
 			<Option target="YCompress"/>
 		</Unit>
 		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor.cpp">
+			<Option target="YCompress"/>
+		</Unit>
+		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor2.cpp">
+			<Option target="YCompress"/>
+		</Unit>
+		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/header/char_buffer.h">
 			<Option target="YCompress"/>
 		</Unit>
 		<Unit filename="/Users/yanjiaqin/CLionProjects/YCompress/header/compressor.h">

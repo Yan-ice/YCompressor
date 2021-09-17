@@ -27,8 +27,8 @@
 #include "../header/compressor.h"
 #include "../header/char_buffer.h"
 
-//#define flow_compressor
-#ifdef flow_compressor
+#define flow_compressor2
+#ifdef flow_compressor2
 
 using namespace std;
 
@@ -44,7 +44,7 @@ OLC check_length(char_buffer buffer,ifstream &in);
 void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
 
     char_buffer buffer = char_buffer(buffer_length+cross_length);
-
+    bool direct_record_state = false;
     do{
         buffer.add(in.get());
     }while(buffer.getTail(buffer_length)!=buffer.cursor && !in.eof());
@@ -56,7 +56,6 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
     while(*buffer.getCursor(1)!=0){
 
         //OLC olc = check_length(buffer,in);
-
         {
             olc_offset = 0;
             olc_length = 0;
@@ -74,7 +73,7 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
                     buffer.next(j);
                     if(j==buffer.getTail(0)){
                         top = true;
-                        buffer.add(in.eof() ? 0 : in.get());
+                        buffer.add(in.eof() ? '\0' : in.get());
                         buffer.moveCursor(1);
                     }
                     count++;
@@ -85,7 +84,7 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
                     olc_next = j;
                     break;
                 }
-                if(count>olc_length){
+                if(count>1 && count>olc_length){
                     olc_length = count;
                     olc_offset = offset;
                     olc_next = j;
@@ -95,14 +94,28 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
         }
 
         buffer.cursor = olc_next;
-        char t = (*buffer.cursor)+33;
+        if(olc_length>0){
+            if(direct_record_state){
+                direct_record_state = false;
+                cout<<" - dir"<<endl;
+                out<<(char)1;
+            }
+            cout<<olc_offset<<" "<<olc_length<<" "<<(int)*olc_next<<endl;
+            out<<(char)(olc_offset+33)<<(char)(olc_length+33)<<(char)(*olc_next+33);
+        }else{
+            if(!direct_record_state){
+                direct_record_state = true;
+                out<<(char)1;
+                cout<<"dir - ";
+            }
+            cout<<(*buffer.cursor);
+            out<<(char)(*olc_next+33);
+        }
 
         buffer.moveCursor(1);
 
-        out<<(char)(olc_offset+33)<<(char)(olc_length+33)<<t<<endl;
-        cout<<olc_offset<<" "<<olc_length<<" "<<t<<endl;
         while(buffer.getTail(buffer_length)!=buffer.cursor){
-            buffer.add(in.eof() ? 0 : in.get());
+            buffer.add(in.eof() ? '\0' : in.get());
         }
 
     }
@@ -143,7 +156,7 @@ OLC check_length(char_buffer buffer,ifstream &in){
             olc.next = j;
             return olc;
         }
-        if(count>olc.length){
+        if(count>olc.length && count>1){
             olc.length = count;
             olc.offset = offset;
             olc.next = j;
@@ -161,37 +174,45 @@ void decompress(ifstream &in,ofstream &out,int buffer_length) {
     char_buffer buffer = char_buffer(buffer_length+1);
 
     buffer.tail = buffer.getCursor(1);
-    char olc[4];
-    while (in>>olc) {
-
-        int offset = olc[0]-33;
-        int length = olc[1]-33;
-        char ch = olc[2]-33;
+    while (!in.eof()) {
+        char flag = in.get();
+        if(flag==0 || flag==-1){
+            break;
+        }
+        if(flag==1){
+            char c = in.get();
+            while(c!=1){
+                out<<buffer.push(c-33);
+                c = in.get();
+            };
+            continue;
+        }
+        int offset = flag-33;
+        char length = in.get()-33;
+        char ch = in.get()-33;
 
         //在这里打印了第二次数据
 
-        if (length == 0) {
-            out<<buffer.push(ch);
-            continue;
-        }
-        //无匹配字符直接打印
+//        if (length == 0) {
+//            out<<buffer.push(ch);
+//            continue;
+//        }
+//        //无匹配字符直接打印
 
         char* beg = buffer.getTail(offset);
 
         for (int a = 0; a < length; a++) {
-            if (*beg != '\0') {
+            if (*beg != '\0' && *beg!=-1) {
                 out<<buffer.push(*beg);
                 buffer.next(beg);
             } else {
                 break;
             }
         }
-
-        if (ch != '\0') {
-            out<<buffer.push(ch);
-        } else {
+        if(ch=='\0' || ch==-1){
             break;
         }
+        out << buffer.push(ch);
         //打印匹配字符串与下一个字符
     }
     in.close();
