@@ -34,6 +34,7 @@ using namespace std;
 
 OLC check_length(char_buffer buffer,ifstream &in);
 
+const static int read_offset = 4;
 /**
  * 将源文件指定长度字符压缩，并输出到文件。
  * 该方法一次性读取所有字符再开始压缩。
@@ -46,7 +47,7 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
     char_buffer buffer = char_buffer(buffer_length+cross_length);
     bool direct_record_state = false;
     do{
-        buffer.add(in.get());
+        buffer.add(in.get()+read_offset);
     }while(buffer.getTail(buffer_length)!=buffer.cursor && !in.eof());
     //先让Tail读取到留出缓冲区的空间，初始化。
 
@@ -54,7 +55,6 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
     int olc_offset = 0;
     char *olc_next;
     while(*buffer.getCursor(1)!=0){
-
         //OLC olc = check_length(buffer,in);
         {
             olc_offset = 0;
@@ -73,7 +73,7 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
                     buffer.next(j);
                     if(j==buffer.getTail(0)){
                         top = true;
-                        buffer.add(in.eof() ? '\0' : in.get());
+                        buffer.add(in.eof() ? '\0' : in.get()+read_offset);
                         buffer.moveCursor(1);
                     }
                     count++;
@@ -101,7 +101,7 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
                 out<<(char)1;
             }
             cout<<olc_offset<<" "<<olc_length<<" "<<(int)*olc_next<<endl;
-            out<<(char)(olc_offset+33)<<(char)(olc_length+33)<<(char)(*olc_next+33);
+            out<<(char)(olc_offset+read_offset)<<(char)(olc_length+read_offset)<<*olc_next;
         }else{
             if(!direct_record_state){
                 direct_record_state = true;
@@ -109,16 +109,17 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
                 cout<<"dir - ";
             }
             cout<<(*buffer.cursor);
-            out<<(char)(*olc_next+33);
+            out<<*olc_next;
         }
 
         buffer.moveCursor(1);
 
         while(buffer.getTail(buffer_length)!=buffer.cursor){
-            buffer.add(in.eof() ? '\0' : in.get());
+            buffer.add(in.eof() ? '\0' : in.get()+read_offset);
         }
 
     }
+    out<<'\0';
     in.close();
     out.close();
 }
@@ -181,15 +182,18 @@ void decompress(ifstream &in,ofstream &out,int buffer_length) {
         }
         if(flag==1){
             char c = in.get();
-            while(c!=1){
-                out<<buffer.push(c-33);
+            while(c!=1 && c!=0){
+                out<<buffer.push(c-read_offset);
                 c = in.get();
             };
+            if(c==0){
+                break;
+            }
             continue;
         }
-        int offset = flag-33;
-        char length = in.get()-33;
-        char ch = in.get()-33;
+        int offset = flag-read_offset;
+        char length = in.get()-read_offset;
+        char ch = in.get();
 
         //在这里打印了第二次数据
 
@@ -202,17 +206,17 @@ void decompress(ifstream &in,ofstream &out,int buffer_length) {
         char* beg = buffer.getTail(offset);
 
         for (int a = 0; a < length; a++) {
-            if (*beg != '\0' && *beg!=-1) {
+            if (*beg+read_offset!='\0') {
                 out<<buffer.push(*beg);
                 buffer.next(beg);
             } else {
                 break;
             }
         }
-        if(ch=='\0' || ch==-1){
+        if(ch==read_offset || ch==read_offset-1){
             break;
         }
-        out << buffer.push(ch);
+        out << buffer.push(ch-read_offset);
         //打印匹配字符串与下一个字符
     }
     in.close();
