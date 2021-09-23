@@ -27,13 +27,16 @@
 #include "../header/compressor.h"
 #include "../header/char_buffer.h"
 
-#define flow_compressor2
+//#define flow_compressor2
 #ifdef flow_compressor2
 
 using namespace std;
 
 OLC check_length(char_buffer buffer,ifstream &in);
 
+/**
+ * 标记 - 0为结束标记，1为直接打印标记。
+ */
 const static int read_offset = 4;
 /**
  * 将源文件指定长度字符压缩，并输出到文件。
@@ -120,8 +123,7 @@ void compress(ifstream &in, ofstream &out, int buffer_length, int cross_length){
 
     }
     out<<'\0';
-    in.close();
-    out.close();
+
 }
 
 
@@ -219,8 +221,7 @@ void decompress(ifstream &in,ofstream &out,int buffer_length) {
         out << buffer.push(ch-read_offset);
         //打印匹配字符串与下一个字符
     }
-    in.close();
-    out.close();
+
 }
 
 #endif //flow_compressor

@@ -4,10 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/yanjiaqin/CLionProjects/YCompress/compressor/char_buffer.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/compressor/char_buffer.cpp.o"
-  "/Users/yanjiaqin/CLionProjects/YCompress/compressor/compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/compressor/compressor.cpp.o"
-  "/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/compressor/flow_compressor.cpp.o"
-  "/Users/yanjiaqin/CLionProjects/YCompress/compressor/flow_compressor2.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/compressor/flow_compressor2.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/delta/delta_compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/delta/delta_compressor.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/lz77/char_buffer.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/lz77/char_buffer.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/lz77/compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/lz77/compressor.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/lz77/flow_compressor.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/lz77/flow_compressor.cpp.o"
+  "/Users/yanjiaqin/CLionProjects/YCompress/lz77/flow_compressor2.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/lz77/flow_compressor2.cpp.o"
   "/Users/yanjiaqin/CLionProjects/YCompress/main.cpp" "/Users/yanjiaqin/CLionProjects/YCompress/cmake-build-debug/CMakeFiles/YCompress.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
